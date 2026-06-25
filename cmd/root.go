@@ -10,6 +10,9 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mimic",
 	Short: "Postgres migration tool with multi-tenant schema support",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Print(args)
+	},
 }
 
 func Execute() {
