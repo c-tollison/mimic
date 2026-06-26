@@ -17,20 +17,20 @@
 
 ## Migration State Model
 
-- [ ] Define migration states: `pending`, `running`, `applied`, `failed`, `rolled_back`
-- [ ] Use `running` state to detect mid-flight crashes vs never-started migrations
-- [ ] Record start time and end time on every migration run
-- [ ] Store error message/stack on `failed` records
-- [ ] All state transitions are append-only (no in-place updates to history)
+- [x] Define migration states: `running`, `applied`, `failed`, `rolled_back` (`pending` is derived from disk vs DB diff)
+- [x] Use `running` state to detect mid-flight crashes vs never-started migrations
+- [x] Each state transition is a new INSERT — no UPDATEs, no DELETEs (append-only event log)
+- [x] `occurred_at` timestamp on every event row; duration derived from first and last event per version
+- [x] Store error message on `failed` rows
 
 ---
 
 ## Tracking Tables (Design Before Writing Code)
 
 - [x] Design `mimic_migrations` table schema
-- [x] migration id, version, name, schema, state, started_at, finished_at, error
+- [x] columns: id, version, name, state, occurred_at, error (append-only event log — one row per state transition)
 - [x] Design `mimic_scripts` table schema
-- [x] script id, name, schema, state, started_at, finished_at, error
+- [x] columns: id, name, state, occurred_at, error (same append-only model)
 - [x] Ensure tracking tables themselves are idempotent to create (safe to re-run `setup`)
 
 ---

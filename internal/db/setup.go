@@ -32,18 +32,18 @@ func (c *Client) Setup(ctx context.Context, schema string) error {
 				version     TEXT NOT NULL,
 				name        TEXT NOT NULL,
 				state       %q.mimic_state NOT NULL,
-				started_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-				finished_at TIMESTAMPTZ,
+				occurred_at TIMESTAMPTZ NOT NULL DEFAULT now(),
 				error       TEXT
 			)`, schema, schema),
+			fmt.Sprintf(`CREATE INDEX ON %q.mimic_migrations (version, occurred_at DESC)`, schema),
 			fmt.Sprintf(`CREATE TABLE %q.mimic_scripts (
 				id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 				name        TEXT NOT NULL,
 				state       %q.mimic_state NOT NULL,
-				started_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-				finished_at TIMESTAMPTZ,
+				occurred_at TIMESTAMPTZ NOT NULL DEFAULT now(),
 				error       TEXT
 			)`, schema, schema),
+			fmt.Sprintf(`CREATE INDEX ON %q.mimic_scripts (name, occurred_at DESC)`, schema),
 		}
 
 		for _, sql := range statements {
