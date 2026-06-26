@@ -36,7 +36,9 @@ func (c *Client) RunInTx(ctx context.Context, fn func(pgx.Tx) error) error {
 	}
 
 	if err := fn(tx); err != nil {
-		_ = tx.Rollback(ctx)
+		if rbErr := tx.Rollback(ctx); rbErr != nil {
+			return fmt.Errorf("tx failed: %w; rollback also failed: %v", err, rbErr)
+		}
 		return err
 	}
 
