@@ -1,6 +1,6 @@
 # Mimic
 
-Postgres migration tool with multi-tenant schema support.
+CLI for running Postgres migrations, with built-in database branching so you can spin up isolated workspaces instead of resetting your local DB.
 
 ## Build & Run
 
