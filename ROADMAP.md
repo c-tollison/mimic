@@ -8,8 +8,6 @@
 - [ ] `mimic run-all` — run all pending migrations in order
 - [ ] `mimic rollback` — rollback the latest applied migration
 - [x] `mimic setup` — initial DB setup (creates tracking tables, advisory lock support)
-- [ ] `mimic reset` — nuke and reseed (local only, guarded hard)
-- [ ] `mimic fill-test-data` — run a test data script against a target
 - [ ] `mimic run-script` — run a tracked one-off script
 - [ ] `mimic dry-run` — preview what would run without executing
 
@@ -76,15 +74,6 @@
 
 ---
 
-## Reset Guard
-
-- [ ] Check `MIMIC_ENV` before allowing `reset`
-- [ ] Require explicit `--confirm` flag
-- [ ] Require `--i-know-what-im-doing` or equivalent second confirmation
-- [ ] Never allow `reset` if `MIMIC_ENV=production` is set, regardless of other flags
-
----
-
 ## Type Generation
 
 - [ ] First-party plugin: Postgres enums → TypeScript enums
@@ -136,7 +125,6 @@
 ## Future / Backlog
 
 - [ ] Support schema-per-tenant multi-tenant deployments
-- [ ] Quick database reproduction — spin up a fresh DB seeded to a known state for local dev or testing
 - [ ] ORM integration via plugin contract (same pattern as codegen)
 - [ ] Web UI / dashboard for migration status
 - [ ] Migration diff viewer (what changed between two versions)
