@@ -6,7 +6,7 @@ CLI for running Postgres migrations, with built-in database branching so you can
 
 ```bash
 # Build the binary
-go build -o mimic .
+go build -o mimic
 
 # Run directly without building
 go run .

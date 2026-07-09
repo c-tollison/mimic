@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+mimic
 
 # Test binary, built with `go test -c`
 *.test
@@ -14,6 +15,9 @@ coverage.*
 *.coverprofile
 profile.cov
 
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
 # Go workspace file
 go.work
 go.work.sum
@@ -22,8 +26,4 @@ go.work.sum
 .env
 
 # Editor/IDE
-.idea/
-.vscode/
-
-# Built binary
-mimic
+# .vscode/
